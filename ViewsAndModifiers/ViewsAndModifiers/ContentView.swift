@@ -18,57 +18,62 @@ struct Title: ViewModifier {
     }
 }
 
-extension View {
-    func titleStyle() -> some View {
-        modifier(Title())
-    }
-}
-
-struct Watermark: ViewModifier {
-    var text: String
-    
+struct BigTitle: ViewModifier {
     func body(content: Content) -> some View {
-        ZStack(alignment: .bottomTrailing) {
-            content
+        content
+            .font(.largeTitle)
+            .fontWeight(.heavy)
+            .foregroundStyle(.blue)
             
-            Text(text)
-                .font(.caption)
-                .foregroundStyle(.white)
-                .padding(5)
-                .background(.black)
-        }
     }
 }
 
 extension View {
-    func watermarked(with text: String) -> some View {
-        modifier(Watermark(text: text))
+    func bigTitle() -> some View {
+        modifier(BigTitle())
     }
 }
 
-//struct CapsuleText: View {
+//extension View {
+//    func titleStyle() -> some View {
+//        modifier(Title())
+//    }
+//}
+
+//struct Watermark: ViewModifier {
 //    var text: String
 //    
-//    var body: some View {
-//        Text(text)
-//            .font(.largeTitle)
-//            .padding()
-//            .background(.blue)
-//            .clipShape(.rect(cornerRadius: 12))
+//    func body(content: Content) -> some View {
+//        ZStack(alignment: .bottomTrailing) {
+//            content
+//            
+//            Text(text)
+//                .font(.caption)
+//                .foregroundStyle(.white)
+//                .padding(5)
+//                .background(.black)
+//        }
+//    }
+//}
+
+//extension View {
+//    func watermarked(with text: String) -> some View {
+//        modifier(Watermark(text: text))
 //    }
 //}
 
 struct ContentView: View {
     var body: some View {
-//        VStack {
-//            Text("First")
+        VStack {
+            Text("First")
 //                .titleStyle()
-//            Text("Second")
+                .bigTitle()
+            Text("Second")
 //                .titleStyle()
-//        }
-        Color.blue
-            .frame(width: 300, height: 200)
-            .watermarked(with: "Hacking with Swift")
+        }
+//        Color.blue
+//            .frame(width: 300, height: 200)
+//            .watermarked(with: "Hacking with Swift")
     }
 }
 
